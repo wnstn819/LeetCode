@@ -25,19 +25,11 @@ class Solution {
         if(node == null){
             return;
         }
-        System.out.println(str + " : node.val : " + node.val);
         inOrder(node.left,"left");
 
-        if(prevVal == -1){
-            
-        }else{
-            System.out.println("nodde : " + node.val);
-            System.out.println("prevval : " + prevVal);
-             System.out.println("result : " + result);
-            result = Math.min(result, Math.abs(node.val - prevVal));
-            System.out.println("result : " + result);
+        if(prevVal != -1){
+           result = Math.min(result, Math.abs(node.val - prevVal)); 
         }
-        System.out.println("prevVal 초기화 : " + node.val);
         prevVal = node.val;
 
         inOrder(node.right, "right");
