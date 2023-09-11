@@ -40,12 +40,12 @@ class WordDictionary {
 		if (c == '.') {
 			boolean tResult = false;
 			for (char key : p.map.keySet()) {
-				if (p.map.get(key) != null) {
+				
 					if (dfsSearch(p.map.get(key), word, start + 1)) {
 						tResult = true;
 						break;
 					}
-				}
+				
 			}
  
 			if (tResult)
