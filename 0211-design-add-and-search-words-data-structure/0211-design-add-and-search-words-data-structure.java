@@ -1,16 +1,9 @@
 class Node {
     Map<Character , Node > map;
-    int count;
     boolean isEnd;
     Node(){
         map = new HashMap<>();
-        count = 0;
     }
-
-    void plusCount(){
-        count++;
-    }
-
 
 }
 
@@ -28,7 +21,6 @@ class WordDictionary {
             if(!node.map.containsKey(c)) node.map.put(c,new Node());
             node = node.map.get(c);
         }
-        node.plusCount(); 
         node.isEnd = true;
     }
     
