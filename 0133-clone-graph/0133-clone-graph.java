@@ -20,17 +20,30 @@ class Node {
 
 class Solution {
  
-    Node[] visited;
     public Node cloneGraph(Node node) {
-        if(node == null) return null;
-        visited = new Node[101];        
-        return recursive(node);
+      if(node == null)
+		 return null;
+	 
+	 Map<Node, Node> map = new HashMap<>();
+	 Queue<Node> que = new LinkedList<>();
+	 map.put(node, new Node(node.val));
+	 que.add(node);
+	 
+	 while(!que.isEmpty()) {
+		 Node currNode = que.poll();
+		 Node cloneNode = map.get(currNode);
+		 
+		 for(Node adjNode: currNode.neighbors) {
+			 if(!map.containsKey(adjNode)) {
+				 map.put(adjNode, new Node(adjNode.val));
+				 que.add(adjNode);
+			 }
+			 cloneNode.neighbors.add(map.get(adjNode));
+		 }
+	 }
+     
+     return map.get(node);
     }
  
-    public Node recursive(Node node) {
-        if(visited[node.val] != null) return visited[node.val];
-        visited[node.val] = new Node(node.val);
-        for(Node n : node.neighbors) visited[node.val].neighbors.add(recursive(n));
-        return visited[node.val];
-    }
+ 
 }
