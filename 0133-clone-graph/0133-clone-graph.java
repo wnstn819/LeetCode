@@ -24,25 +24,25 @@ class Solution {
       if(node == null)
 		 return null;
 	 
-	 Map<Node, Node> map = new HashMap<>();
+	 Map<Integer, Node> map = new HashMap<>();
 	 Queue<Node> que = new LinkedList<>();
-	 map.put(node, new Node(node.val));
+	 map.put(node.val, new Node(node.val));
 	 que.add(node);
 	 
 	 while(!que.isEmpty()) {
-		 Node currNode = que.poll();
-		 Node cloneNode = map.get(currNode);
+		 Node cur = que.poll();
+		 Node temp = map.get(cur.val);
 		 
-		 for(Node adjNode: currNode.neighbors) {
-			 if(!map.containsKey(adjNode)) {
-				 map.put(adjNode, new Node(adjNode.val));
-				 que.add(adjNode);
+		 for(Node neighborsNode: cur.neighbors) {
+			 if(!map.containsKey(neighborsNode.val)) {
+				 map.put(neighborsNode.val, new Node(neighborsNode.val));
+				 que.add(neighborsNode);
 			 }
-			 cloneNode.neighbors.add(map.get(adjNode));
+			 temp.neighbors.add(map.get(neighborsNode.val));
 		 }
 	 }
      
-     return map.get(node);
+     return map.get(node.val);
     }
  
  
